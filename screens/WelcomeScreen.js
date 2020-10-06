@@ -7,8 +7,11 @@ const SLIDE_DATA = [
     { text: 'Set your location, then swipe away', color: '#03A9F4' }
 ];
 
-export default function WelcomeScreen() {
+export default function WelcomeScreen({ navigation }) {
+
+    const onSlidesComplete = () => navigation.navigate('Auth');
+
     return (
-        <Slides data={SLIDE_DATA} />
+        <Slides data={SLIDE_DATA} onComplete={onSlidesComplete} />
     )
 }
