@@ -3,12 +3,13 @@ import {
     View,
     Text
 } from 'react-native'
+import MapView from 'react-native-maps';
 import CommonStyles from '../CommonStyles';
 
 export default function MapScreen() {
     return (
         <View style={CommonStyles.container}>
-            <Text>Map Screen</Text>
+            <MapView style={{ width: '100%', height: '100%' }} />
         </View>
     )
 }

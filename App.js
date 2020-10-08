@@ -4,6 +4,8 @@ import { Text, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Provider } from 'react-redux';
+import store from './store';
 
 import AuthScreen from './screens/AuthScreen'
 import WelcomeScreen from './screens/WelcomeScreen'
@@ -43,13 +45,15 @@ export default function App() {
     </MainTab.Navigator>
 
   return (
-    <NavigationContainer>
-      <AuthTab.Navigator initialRouteName="Welcome">
-        <AuthTab.Screen name="Welcome" component={WelcomeScreen} />
-        <AuthTab.Screen name="Auth" component={AuthScreen} />
-        <AuthTab.Screen name="Main" component={Main} />
-      </AuthTab.Navigator>
-      <StatusBar style="auto" />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <AuthTab.Navigator initialRouteName="Welcome" lazy={true} screenOptions={{tabBarVisible: false}}>
+          <AuthTab.Screen name="Welcome" component={WelcomeScreen} />
+          <AuthTab.Screen name="Auth" component={AuthScreen} />
+          <AuthTab.Screen name="Main" component={Main} />
+        </AuthTab.Navigator>
+        <StatusBar style="auto" />
+      </NavigationContainer>
+    </Provider>
   );
 }
